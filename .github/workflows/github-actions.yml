@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@latest
+      - uses: pnpm/action-setup@v3
         with:
           version: 8
       - name: Set up Node
