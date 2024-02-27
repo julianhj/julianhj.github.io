@@ -7,9 +7,6 @@
 # Node
 node_modules
 
-# Npm
-pnpm-lock.yaml
-
 # Development
 node_modules/
 
