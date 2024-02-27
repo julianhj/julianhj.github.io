@@ -1,0 +1,47 @@
+# Build
+/dist
+/lib
+/lib-types
+/server
+
+# Node
+node_modules
+
+# Npm
+pnpm-lock.yaml
+
+# Development
+node_modules/
+
+# Cache
+.cache
+.mf
+.vscode
+.rollup.cache
+tsconfig.tsbuildinfo
+
+# Logs
+logs
+*.log
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Yarn
+.yarn/*
+!.yarn/releases
+
+package-lock.json
+.jampack
+
+tmp
+
