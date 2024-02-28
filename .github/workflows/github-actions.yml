@@ -21,22 +21,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  checkout:
-    environment:
-      name: github-pages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
   deploy:
-    needs: checkout
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v3
         name: Install pnpm
