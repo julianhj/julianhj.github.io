@@ -21,33 +21,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  checkout:
-    environment:
-      name: github-pages
+  setup-environment:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Upload output file
-        uses: actions/upload-artifact@v4
-        with:
-          name: source_artifacts
-          path: './'
-
-  deploy:
-    needs: checkout
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Get source code
-        uses: actions/download-artifact@v4
-        with:
-          name: source_artifacts
-
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
@@ -74,10 +50,53 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: 'pnpm'              
+
+  checkout:
+    needs: setup-environment
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload output file
+        uses: actions/upload-artifact@v4
+        with:
+          name: source_artifacts
+          path: './'
+
+  build:
+    needs: checkout
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get source code
+        uses: actions/download-artifact@v4
+        with:
+          name: source_artifacts
 
       - name: Build
         run: pnpm run build
+
+      - name: Upload output file
+        uses: actions/upload-artifact@v4
+        with:
+          name: build_artifacts
+          path: './dist'
+
+  deploy:
+    needs: build
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Get source code
+        uses: actions/download-artifact@v4
+        with:
+          name: build_artifacts
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -86,7 +105,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload dist repository
-          path: './dist'
+          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
