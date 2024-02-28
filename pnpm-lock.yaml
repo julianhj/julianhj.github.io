@@ -44,6 +44,9 @@ devDependencies:
   gray-matter:
     specifier: ^4.0.3
     version: 4.0.3
+  jsx-runtime:
+    specifier: link:@builder.io/qwik/jsx-runtime
+    version: link:@builder.io/qwik/jsx-runtime
   markdown-it:
     specifier: ^14.0.0
     version: 14.0.0
