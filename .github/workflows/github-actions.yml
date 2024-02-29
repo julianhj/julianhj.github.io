@@ -53,18 +53,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-
-      - name: Upload output file
-        uses: actions/upload-artifact@v4
-        with:
-          name: source_artifacts
-          path: './'
-
-      - name: Get source code
-        uses: actions/download-artifact@v4
-        with:
-          name: source_artifacts
-
+          cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
   
