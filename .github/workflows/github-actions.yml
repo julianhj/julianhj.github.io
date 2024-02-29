@@ -43,13 +43,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           cache: 'pnpm'
-          cache-dependency-path: '**/package-lock.json'
+          cache-dependency-path: '**/pnpm-lock.json'
 
   checkout:
     needs: setup-environment
