@@ -48,11 +48,22 @@ jobs:
         with:
           node-version: '20.x'
 
+      - name: Upload environment
+        uses: actions/upload-artifact@v4
+        with:
+          name: environment_artifacts
+          path: './'
+
   checkout:
     needs: setup-environment
 
     runs-on: ubuntu-latest
     steps:
+      - name: Get environment artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: environment_artifacts
+
       - name: Checkout
         uses: actions/checkout@v4
 
