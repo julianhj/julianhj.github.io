@@ -93,11 +93,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.sha }}
-          release_name: ${{ github.sha }}
-          draft: false
-          prerelease: false
+      - name: 'Create Release'
+        run: hub release create release_name -m release_message -a your_build_artifact.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
