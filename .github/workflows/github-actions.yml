@@ -94,6 +94,12 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: 'Create Release'
-        run: hub release create release_name -m release_message -a your_build_artifact.zip
+        run: gh release create latestxx --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: 'Create Release'
+        run: gh release upload latestxx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
