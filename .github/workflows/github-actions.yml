@@ -95,3 +95,9 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.sha }}
+          release_name: ${{ github.sha }}
+          draft: false
+          prerelease: false
