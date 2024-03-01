@@ -67,6 +67,16 @@ jobs:
           name: build_artifacts
           path: './dist'
 
+      - name: 'Create Release'
+        run: gh release create latestxx . --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            
+      - name: 'Create Release'
+        run: gh release upload latestxx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
+
   deploy:
     needs: build
 
@@ -94,13 +104,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: 'Create Release'
-        run: gh release create latestxx . --generate-notes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: 'Create Release'
-        run: gh release upload latestxx
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   
