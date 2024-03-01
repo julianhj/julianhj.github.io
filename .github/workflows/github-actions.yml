@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build_artifacts
-          path: './dist'
+          path: '.'
 
   deploy:
     needs: build
@@ -87,14 +87,14 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload dist repository
-          path: '.'
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
       - name: 'Create Release'
-        run: gh release create latestxx --generate-notes
+        run: gh release create latestxx . --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
