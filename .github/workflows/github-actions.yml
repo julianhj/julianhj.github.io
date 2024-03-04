@@ -93,14 +93,16 @@ jobs:
           git tag "$releaseVersion" lastest-release
           git push origin "$releaseVersion"
           git push origin lastest-release
-        
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: my_tag_5
+          tag_name: my_tag_6
           release_name: Release ${{ github.ref }}
           body: |
             Changes in this Release
