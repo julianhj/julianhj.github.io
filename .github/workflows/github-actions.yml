@@ -27,6 +27,8 @@ jobs:
     environment:
       name: development
     runs-on: ubuntu-latest
+    outputs:
+      artifact-url: ${{ steps.artifact-upload-step.outputs.artifact-url }}
 
     steps:
       - uses: pnpm/action-setup@v3
@@ -80,7 +82,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Get source code
         uses: actions/download-artifact@v4
@@ -100,17 +102,12 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-
-
       - name: 'Create Release'
-        run: gh release create latestxx ${{ steps.create_release.outputs.upload_url }} --generate-notes
+        run: | 
+          zip -r release/baz.zip ./
+          gh release create 'my_release' ./release/baz.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            
-      - name: 'Create Release'
-        run: gh release upload latestxx
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
+          GH_TOKEN: ${{ github.token }}
 
 
 
