@@ -81,22 +81,31 @@ jobs:
 # https://gist.github.com/kyle-west/f8ed91e2b04656999a3d057e5aee8059
       - name: Include dist in relase
         run: |
+
           releaseVersion=`node -e "let package = require('./package.json'); console.log(package.version)"`
           releaseVersion="v$releaseVersion" # of the form vX.X.X
           
           # Allow the `dist` folder to be in the release
           newIgnore=`sed -e 's#dist##g' .gitignore`
           echo "$newIgnore" > .gitignore # the redirect here is put into a spereate step to avoid a locking issue with git
+
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git tag $GITHUB_REF_NAME
+          git commit -m "[BUILD] $releaseVersion"
+          # git push
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-  
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: my_tag_12
+          tag_name: my_tag_10
           release_name: Release ${{ github.ref }}
           body: |
             Changes in this Release
