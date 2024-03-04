@@ -81,13 +81,6 @@ jobs:
 # https://gist.github.com/kyle-west/f8ed91e2b04656999a3d057e5aee8059
       - name: Include dist in relase
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git tag $GITHUB_REF_NAME
-          git commit -m "[BUILD] $releaseVersion"
-          git push
-
           releaseVersion=`node -e "let package = require('./package.json'); console.log(package.version)"`
           releaseVersion="v$releaseVersion" # of the form vX.X.X
           
