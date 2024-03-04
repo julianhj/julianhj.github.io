@@ -88,9 +88,7 @@ jobs:
           newIgnore=`sed -e 's#dist##g' .gitignore`
           echo "$newIgnore" > .gitignore # the redirect here is put into a spereate step to avoid a locking issue with git
 
-          gh add .gitignore && gh commit -m "[BUILD] $releaseVersion"          
-          gh tag create "$releaseVersion" lastest-release
-          gh push --set-upstream origin "$releaseVersion"
+          git add .gitignore && gh commit -m "[BUILD] $releaseVersion"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           
