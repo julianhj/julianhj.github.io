@@ -69,15 +69,8 @@ jobs:
           name: build_artifacts
           path: './dist'
 
-      - name: 'Create Release'
-        run: gh release create latestxx . --generate-notes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            
-      - name: 'Create Release'
-        run: gh release upload latestxx
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
+      - name: Output artifact URL
+        run:  echo 'Artifact URL is ${{ steps.artifact-upload-step.outputs.artifact-url }}'
 
   deploy:
     needs: build
@@ -105,6 +98,19 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
+
+      - name: 'Create Release'
+        run: gh release create latestxx ${{ steps.create_release.outputs.upload_url }} --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            
+      - name: 'Create Release'
+        run: gh release upload latestxx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
+
 
 
   
