@@ -90,10 +90,10 @@ jobs:
 
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add .gitignore && git commit -m "[BUILD] $releaseVersion"
+          git add .gitignore
 
           git tag $GITHUB_REF_NAME
-          git commit -a -m "Add changes"
+          git commit -m "[BUILD] $releaseVersion"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -112,7 +112,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: my_tag_7
+          tag_name: my_tag_8
           release_name: Release ${{ github.ref }}
           body: |
             Changes in this Release
