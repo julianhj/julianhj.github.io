@@ -83,7 +83,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: my_tag_3
+          tag_name: my_tag_4
           release_name: Release ${{ github.ref }}
           body: |
             Changes in this Release
