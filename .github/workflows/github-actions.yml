@@ -77,7 +77,8 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# Allow the `dist` folder to be in the release
+# Allow the `dist` folder to be in the release 
+# https://gist.github.com/kyle-west/f8ed91e2b04656999a3d057e5aee8059
       - name: Include dist in relase
         run: |
           releaseVersion=`node -e "let package = require('./package.json'); console.log(package.version)"`
@@ -86,13 +87,10 @@ jobs:
           # Allow the `dist` folder to be in the release
           newIgnore=`sed -e 's#dist##g' .gitignore`
           echo "$newIgnore" > .gitignore # the redirect here is put into a spereate step to avoid a locking issue with git
-          git add -A && git commit -m "[BUILD] $releaseVersion"
-          
-          # Make a new tag off of the latest build
-          git checkout master
-          git tag "$releaseVersion" lastest-release
-          git push origin "$releaseVersion"
-          git push origin lastest-release
+
+          gh add .gitignore && gh commit -m "[BUILD] $releaseVersion"          
+          gh tag create "$releaseVersion" lastest-release
+          gh push --set-upstream origin "$releaseVersion"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           
@@ -102,7 +100,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: my_tag_6
+          tag_name: my_tag_7
           release_name: Release ${{ github.ref }}
           body: |
             Changes in this Release
