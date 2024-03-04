@@ -27,8 +27,6 @@ jobs:
     environment:
       name: development
     runs-on: ubuntu-latest
-    outputs:
-      artifact-url: ${{ steps.artifact-upload-step.outputs.artifact-url }}
 
     steps:
       - uses: pnpm/action-setup@v3
@@ -72,8 +70,8 @@ jobs:
           name: build_artifacts
           path: './dist'
 
-      - name: Output artifact URL
-        run:  echo 'Artifact URL is ${{ steps.artifact-upload-step.outputs.artifact-url }}'
+      #- name: Output artifact URL
+      #  run:  echo 'Artifact URL is ${{ steps.artifact-upload-step.outputs.artifact-url }}'
 
   deploy:
     needs: build
@@ -104,11 +102,9 @@ jobs:
 
       - name: 'Create Release'
         run: | 
-          zip -r release/baz.zip ./
-          gh release create 'my_release' ./release/baz.zip
+          mkdir release
+          cp -R * release
+          zip -r baz.zip ./release
+          gh release create 'my_release' ./baz.zip
         env:
           GH_TOKEN: ${{ github.token }}
-
-
-
-  
