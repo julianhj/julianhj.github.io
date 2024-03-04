@@ -76,12 +76,12 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Create Release
-        id: create_release_3
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: my_tag_2
+          tag_name: my_tag_3
           release_name: Release ${{ github.ref }}
           body: |
             Changes in this Release
