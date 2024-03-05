@@ -91,7 +91,7 @@ jobs:
 
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add .
+          git add .dist
           git tag $GITHUB_REF_NAME
           git commit -m "[BUILD] $releaseVersion"
           # git push
@@ -101,11 +101,11 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: my_tag_13
+          tag_name: my_tag_14
           release_name: Release ${{ github.ref }}
           body: |
             Changes in this Release
