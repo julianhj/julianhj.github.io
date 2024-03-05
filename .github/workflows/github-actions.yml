@@ -85,7 +85,6 @@ jobs:
 # https://gist.github.com/kyle-west/f8ed91e2b04656999a3d057e5aee8059
       - name: Include dist in relase
         run: |
-
           releaseVersion=`node -e "let package = require('./package.json'); console.log(package.version)"`
           releaseVersion="v$releaseVersion" # of the form vX.X.X
           
@@ -95,7 +94,7 @@ jobs:
 
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add -- . ':!.gitignore'
+          git add . ':!.gitignore'
           git tag $GITHUB_REF_NAME
           git commit -m "[BUILD] $releaseVersion"
           git push origin
@@ -127,7 +126,14 @@ jobs:
           asset_path: ./dist
           asset_name: dist
           asset_content_type: application/zip
-  
+
+      - name: Update Release
+        id: update_release1
+        uses: actions/update-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with: 
+            
       #- name: 'Create Release'
       #  run: | 
       #    zip -r baz.zip ./dist
