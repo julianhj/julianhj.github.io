@@ -79,7 +79,7 @@ jobs:
 
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"        
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"        
 
 # Allow the `dist` folder to be in the release 
 # https://gist.github.com/kyle-west/f8ed91e2b04656999a3d057e5aee8059
