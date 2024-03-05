@@ -89,7 +89,7 @@ jobs:
           releaseVersion="v$releaseVersion" # of the form vX.X.X
           
           # Allow the `dist` folder to be in the release
-          newIgnore=`sed -e 's#dist##g' .gitignore`
+          newIgnore=`sed -e 's#/dist##g' .gitignore`
           echo "$newIgnore" > .gitignore # the redirect here is put into a spereate step to avoid a locking issue with git
 
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
