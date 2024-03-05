@@ -91,11 +91,10 @@ jobs:
 
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add .dist
-          git tag $GITHUB_REF_NAME
+          git add dist
+          git tag $GITHUB_REF_NAME $releaseVersion
           git commit -m "[BUILD] $releaseVersion"
-          git push
-
+          git push origin $GITHUB_REF_NAME
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
