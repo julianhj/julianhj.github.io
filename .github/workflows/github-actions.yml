@@ -77,6 +77,10 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"        
+
 # Allow the `dist` folder to be in the release 
 # https://gist.github.com/kyle-west/f8ed91e2b04656999a3d057e5aee8059
       - name: Include dist in relase
@@ -104,8 +108,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: $GITHUB_REF_NAME
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ steps.date.outputs.date }}
+          release_name: Release ${{ steps.date.outputs.date }}
           body: |
             Changes in this Release
             - First Change
