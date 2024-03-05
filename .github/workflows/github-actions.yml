@@ -77,6 +77,13 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+
+      - name: Upload all artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
+
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"        
