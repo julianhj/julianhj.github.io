@@ -94,7 +94,7 @@ jobs:
           git add dist
           git tag $GITHUB_REF_NAME $releaseVersion
           git commit -m "[BUILD] $releaseVersion"
-          git push origin $GITHUB_REF_NAME
+          git push origin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
