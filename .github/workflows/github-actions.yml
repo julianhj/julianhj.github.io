@@ -97,7 +97,7 @@ jobs:
             - First Change
             - Second Change
           draft: true
-          prerelease: false
+          prerelease: true
 
       - name: Update Release
         id: update_release
