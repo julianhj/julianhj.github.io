@@ -90,6 +90,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
+          git push origin --delete lastest-release
           git tag lastest-release -m “lastest-release”
           git push origin lastest-release
         env:
