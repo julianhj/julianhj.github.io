@@ -87,8 +87,8 @@ jobs:
       - name: tag
         id: tag
         run: |
-          # git push origin lastest-release
           git tag lastest-release
+          git push origin lastest-release
         
       - name: Create Release
         id: create_release
@@ -116,4 +116,5 @@ jobs:
           asset_name: dist.zip
           asset_content_type: application/zip
 
-            
+          # get latest tag 
+          #git describe --tags `git rev-list --tags --max-count=1`
