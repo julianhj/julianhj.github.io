@@ -52,7 +52,7 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
-
+          
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -73,81 +73,41 @@ jobs:
         with:
           path: './dist'
 
+      - name: ZIP build
+        run: zip -r dist.zip dist          
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
 
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H:%M:%S')"        
 
-# Allow the `dist` folder to be in the release 
-# https://gist.github.com/kyle-west/f8ed91e2b04656999a3d057e5aee8059
-      - name: Include dist in relase
-        run: |
-
-          # Remove our former release branch
-          #git branch -D lastest-release 2>/dev/null
-          #git push origin --delete lastest-release 2>/dev/null
-
-          # Create a new branch to run the build under
-          git checkout -b lastest-release
-
-          # Ensure we have the latest version of things
-          npm ci
-
-          # Build and update docs
-          npm run build && git add -A docs
-
-          # Collect the version number
-          releaseVersion=`node -e "let package = require('./package.json'); console.log(package.version)"`
-          releaseVersion="v$releaseVersion" # of the form vX.X.X
-
-          # Allow the `dist` folder to be in the release
-          newIgnore=`sed -e 's#/dist##g' .gitignore`
-          echo "$newIgnore" > .gitignore
-          git add -A && git commit -m "[BUILD] $releaseVersion"
-
-          # Make a new tag off of the latest build
-          git checkout main
-          git tag "$releaseVersion" lastest-release
-          git push origin "$releaseVersion"
-          git push origin lastest-release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with:
+          tag_name: ${{ steps.date.outputs.date }}
+          release_name: Release ${{ steps.date.outputs.date }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false          
 
-      #- name: Create Release
-      #  id: create_release
-      #  uses: actions/create-release@v1        
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      #  with:
-      #    tag_name: ${{ steps.date.outputs.date }}
-      #    release_name: Release ${{ steps.date.outputs.date }}
-      #    body: |
-      #      Changes in this Release
-      #      - First Change
-      #      - Second Change
-      #    draft: false
-      #    prerelease: false          
-
-
-      #- name: Update Release
-      #  id: update_release
-      #  uses: actions/upload-release-asset@v1
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      #  with:
-      #    upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #    asset_path: ./dist
-      #    asset_name: dist
-      #    asset_content_type: application/zip
+      - name: Update Release
+        id: update_release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist.zip
+          asset_name: dist.zip
+          asset_content_type: application/zip
 
             
-      #- name: 'Create Release'
-      #  run: | 
-      #    zip -r baz.zip ./dist
-      #    gh release create 'my_release' ./baz.zip
-      #  env:
-      #    GH_TOKEN: ${{ github.token }}
