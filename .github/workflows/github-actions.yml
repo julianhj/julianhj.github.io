@@ -84,6 +84,10 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"
 
+      - name: tag
+        id: tag
+        run: git push origin lastest-release
+        
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1        
