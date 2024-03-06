@@ -86,9 +86,6 @@ jobs:
 # https://gist.github.com/kyle-west/f8ed91e2b04656999a3d057e5aee8059
       - name: Include dist in relase
         run: |
-          # Make sure our main branch is up to date
-          git checkout main
-          git pull
 
           # Remove our former release branch
           git branch -D lastest-release 2>/dev/null
