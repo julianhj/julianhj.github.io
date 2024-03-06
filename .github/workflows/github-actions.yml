@@ -87,7 +87,7 @@ jobs:
       - name: tag
         id: tag
         run: |
-          git push origin lastest-release
+          # git push origin lastest-release
           git tag lastest-release
         
       - name: Create Release
