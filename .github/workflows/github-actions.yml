@@ -89,7 +89,9 @@ jobs:
         run: |
           git tag lastest-release -m “lastest-release”
           git push origin lastest-release
-        
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1        
