@@ -6,7 +6,7 @@ export default (props: ItemProps) => {
   const { class: className } = props;
   return (
     <svg
-      class={`icon icon-tabler text-blue-200 ${className || "h-5 w-5"}`}
+      class={`icon icon-tabler fill-white-900 ${className || "h-5 w-5"}`}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

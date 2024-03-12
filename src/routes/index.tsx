@@ -23,41 +23,41 @@ export default component$(() => {
     <>
       <Hero />
       <Features
-        highlight="Features"
-        title="What you get with Qwind"
-        subtitle="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque ipsa quae."
+        highlight=". . ."
+        title="Key Principles"
+        subtitle="The modern digital economy requires organisations to have heightened efficiency"
         items={[
           {
-            title: "Qwik + Tailwind CSS Integration",
+            title: "Responsive to change",
             description:
               "A seamless integration between two great frameworks that offer high productivity, performance and versatility.",
             icon: IconBrandTailwind,
           },
           {
-            title: "Ready-to-use Components",
+            title: "Agile, with flexible approaches",
             description:
               "Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...",
             icon: IconApps,
           },
           {
-            title: "Best Practices",
+            title: "An ownership culture",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.",
+              "where you own what you build.",
           },
           {
-            title: "Excellent Page Speed",
+            title: "Automate everything!",
             description:
               "Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.",
             icon: IconRocket,
           },
           {
-            title: "Search Engine Optimization (SEO)",
+            title: "Expedite release cycles",
             description:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.",
             icon: IconBrandGoogle,
           },
           {
-            title: "Open to new ideas and contributions",
+            title: "Continuous learning and improvement",
             description:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.",
             icon: IconBulb

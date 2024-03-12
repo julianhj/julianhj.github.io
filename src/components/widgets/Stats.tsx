@@ -9,7 +9,7 @@ export default component$(() => {
             132K
           </div>
           <p class="text-sm font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">
-            Downloads
+            Downloads test test test test test test test
           </p>
         </div>
         <div class="text-center md:border-r dark:md:border-slate-500 mb-10 md:mb-0">

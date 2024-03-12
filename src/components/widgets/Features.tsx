@@ -34,7 +34,7 @@ export default component$((props: Props) => {
       </div>
       <div
         class={twMerge(
-          "relative mx-auto max-w-5xl px-4 md:px-6 py-12 md:py-16 lg:py-20 text-default",
+          "relative mx-auto max-w-5xl px-4 md:px-6 py-12 md:py-16 lg:py-20",
           classes?.container,
           isDark ? "dark" : ""
         )}
@@ -44,9 +44,10 @@ export default component$((props: Props) => {
           items={items}
           defaultIcon={IconStar}
           classes={{
-            container: "md:grid-cols-2",
+            container: "md:grid-cols-2 hover:text-white",
             title: "md:text-[1.3rem]",
-            icon: "text-white bg-secondary-500 dark:bg-secondary-700 rounded-full w-10 h-10 p-2 md:w-12 md:h-12 md:p-3 mr-4",
+            icon: "text-gray-300 bg-secondary-500 rounded-full w-10 h-10 p-2 md:w-12 md:h-12 md:p-3 mr-4",
+            description: "",
             ...(classes?.items ?? {}),
           }}
         />

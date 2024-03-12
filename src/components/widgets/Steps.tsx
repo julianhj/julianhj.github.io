@@ -9,29 +9,49 @@ const sideImg =
 
 export default component$(() => {
   const stepsData = {
-    title: "Sed ac magna sit amet risus tristique interdum. hac.",
+    title: "The key Steps",
     items: [
       {
-        title: "Step 1",
+        title: "Continuous Design",
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mirisus tempus nulla, sed porttitor est nibh at nulla. Praesent placerat enim ut ex tincidunt vehicula. Fusce sit amet dui tellus.",
+          "Emphasizes the ongoing nature of design activities throughout the development process. This involves refining and evolving the design based on changing requirements, feedback, and emerging insights. Continuous design encourages adaptability and responsiveness to evolving project needs.",
         icon: IconArrowRight,
       },
       {
-        title: "Step 2",
+        title: "Continuous Development",
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mirisus tempus nulla, sed porttitor est nibh at nulla.",
-        icon: IconStar,
+          "Promotes an ongoing development process where coding activities are continuous rather than divided into distinct phases. This aligns with agile methodologies, emphasizing iterative development, regular releases, and responsiveness to changing priorities.",
+        icon: IconArrowRight,
       },
       {
-        title: "Step 3",
+        title: "Continuous Integration",
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mirisus tempus nulla, sed porttitor est nibh at nulla.",
-        icon: IconStar,
+          "Involves the frequent integration of code changes into a shared repository. This practice helps identify and address integration issues early in the development process, promoting collaboration among team members and ensuring a stable codebase.",
+        icon: IconArrowRight,
       },
       {
-        title: "Ready!",
-        icon: IconStar,
+        title: "Continuous Deployment",
+        description:
+          "Focuses on automating the deployment process to enable the rapid and consistent release of software changes into production. Continuous deployment minimizes manual intervention, reducing the risk of errors and accelerating the delivery of new features.",
+        icon: IconArrowRight,
+      },
+      {
+        title: "Continuous Release",
+        description:
+          "Extends the continuous deployment concept, emphasizing the continuous release of software changes to end-users. This involves making new features and improvements available to users in a seamless and regular manner, fostering a continuous delivery pipeline.",
+        icon: IconArrowRight,
+      },
+      {
+        title: "Continuous Feedback",
+        description:
+          "Stresses the importance of gathering feedback continuously from users, stakeholders, and automated monitoring systems. Feedback loops help teams assess the impact of changes, identify areas for improvement, and make informed decisions for future iterations.",
+        icon: IconArrowRight,
+      },
+      {
+        title: "Repeat",
+        description:
+          "After obtaining feedback, teams can iterate on the design, development, integration, and deployment processes to continuously enhance the software product. This repetition supports a culture of continuous improvement.",
+        icon: IconArrowRight,
       },
     ],
     image: {
@@ -45,7 +65,8 @@ export default component$(() => {
     <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
       <div class="row-gap-10 grid gap-6 md:grid-cols-2">
         <div class="mb-4 md:mb-0 md:py-4 md:pr-16">
-          {title && <h2 class="font-heading mb-8 text-3xl font-bold lg:text-4xl">{title}</h2>}
+          {title && <h2 class="text-4xl md:text-4xl leading-3 sm:whitespace-nowrap text-primary mb-8">{title}</h2>}
+          
           {Array.isArray(items) &&
             items.length &&
             items.map(({ title, description, icon: Icon }, index) => (
@@ -53,9 +74,11 @@ export default component$(() => {
                 <div class="mr-4 flex flex-col items-center">
                   <div>
                     {index !== items.length - 1 ? (
-                      <div class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary-900">
+                      <div class="flex bg-[#039de1] h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300">
                         {typeof Icon !== "undefined" ? (
-                          <Icon class="h-6 w-6 text-primary-800 dark:text-slate-200" />
+                          //<Icon class="h-6 w-6 text-white" />
+                          <p class="text-white font-extrabold">{`${index}`}</p>
+                          
                         ) : (
                           <IconStar class="h-6 w-6 text-primary-800 dark:text-slate-200" />
                         )}
@@ -63,18 +86,18 @@ export default component$(() => {
                     ) : (
                       <div class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary-900 bg-primary-900">
                         {typeof Icon !== "undefined" ? (
-                          <Icon class="h-6 w-6 text-white dark:text-slate-200" />
+                          <Icon class="h-6 w-60" />
                         ) : (
-                          <IconStar class="h-6 w-6 text-white dark:text-slate-200" />
+                          <IconStar class="h-6 w-6" />
                         )}
                       </div>
                     )}
                   </div>
                   {index !== items.length - 1 && <div class="h-full w-px bg-gray-300 dark:bg-slate-500"></div>}
                 </div>
-                <div class={`pt-1 ${index !== items.length - 1 ? "pb-8" : ""}`}>
-                  {title && <p class="mb-2 text-xl font-bold text-gray-900 dark:text-slate-300">{title}</p>}
-                  {description && <p class="text-gray-600 dark:text-slate-400">{description}</p>}
+                <div class={`pt-1 hover:text-primary ${index !== items.length - 1 ? "pb-8" : ""}`}>
+                {title && <p class="mb-2 text-xl font-bold">{title}</p>}
+                {description && <p class="">{description}</p>}
                 </div>
               </div>
             ))}
