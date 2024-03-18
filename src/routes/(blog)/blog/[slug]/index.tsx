@@ -5,8 +5,10 @@ import type { DocumentHead, StaticGenerateHandler } from "@builder.io/qwik-city"
 import type { Post } from "~/types";
 
 import md from "markdown-it";
+//import MarkdownIt from 'markdown-it';
 
 import { fetchPosts, findPostBySlug } from "~/utils/posts";
+//import { parse } from "path";
 
 export const useGetPostBySlug = routeLoader$(async ({ params, status }) => {
   const post = await findPostBySlug(params.slug);
@@ -59,9 +61,12 @@ export default component$(() => {
         </header>
         <div
           class="prose-md prose-headings:font-heading prose-headings:leading-tighter container prose prose-lg mx-auto mt-8 max-w-3xl px-6 prose-headings:font-bold prose-headings:tracking-tighter prose-a:text-primary-600 prose-img:rounded-md prose-img:shadow-lg dark:prose-invert dark:prose-headings:text-slate-300 dark:prose-a:text-primary-400 sm:px-6 lg:prose-xl"
-          dangerouslySetInnerHTML={md({
-            html: true,
-          }).render(post.content)}
+          
+          dangerouslySetInnerHTML={
+            md({
+              html: true,
+            }).render(post.content)}
+          
         />
       </article>
     </section>

@@ -77,7 +77,7 @@ export default component$(() => {
                       <div class="flex bg-[#039de1] h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300">
                         {typeof Icon !== "undefined" ? (
                           //<Icon class="h-6 w-6 text-white" />
-                          <p class="text-white font-extrabold">{`${index}`}</p>
+                          <p class="text-white font-extrabold">{`${index + 1}`}</p>
                           
                         ) : (
                           <IconStar class="h-6 w-6 text-primary-800 dark:text-slate-200" />

@@ -7,9 +7,6 @@
   },
   "homepage": "https://julianhj.github.io/julianhj.github.io",
   "private": true,
-  "trustedDependencies": [
-    "sharp"
-  ],
   "type": "module",
   "scripts": {
     "build": "qwik build",
@@ -29,13 +26,14 @@
   "devDependencies": {
     "@builder.io/qwik": "^1.4.5",
     "@builder.io/qwik-city": "^1.4.5",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/eslint": "^8.56.2",
     "@types/markdown-it": "^13.0.7",
     "@types/node": "^20.11.6",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
     "@unpic/qwik": "^0.0.44",
-    "autoprefixer": "^10.4.14",
+    "autoprefixer": "^10.4.17",
     "esbuild": "^0.20.1",
     "eslint": "^8.56.0",
     "eslint-plugin-qwik": "^1.4.5",
@@ -47,10 +45,13 @@
     "prettier-plugin-tailwindcss": "^0.5.4",
     "source-map-support": "^0.5.21",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss": "3.3.3",
+    "tailwindcss": "3.4.1",
     "typescript": "5.3.3",
     "undici": "*",
     "vite": "^5.0.12",
     "vite-tsconfig-paths": "^4.2.1"
+  },
+  "dependencies": {
+    "latest": "^0.2.0"
   }
 }

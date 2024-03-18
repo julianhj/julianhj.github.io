@@ -18,10 +18,10 @@ export const ItemGrid = (props: Props) => {
 
   const {
     container: containerClass = "md:grid-cols-2 hover:text-white",
-    panel: panelClass = "hover:bg-primary hover:text-white text-gray-600 dark:text-slate-400 p-6 items-stretch  h-full rounded-lg shadow-md hover:shadow-2xl",
+    panel: panelClass = "hover:bg-primary hover:text-white text-gray-600 p-6 items-stretch  h-full rounded-lg shadow-md hover:shadow-2xl",
     title: titleClass = "",
     //description: descriptionClass = "",
-    icon: defaultIconClass = "text-gray-600 dark:text-secondary-700",
+    icon: defaultIconClass = "text-gray-600",
   } = classes as Record<string, string>;
 
   return (

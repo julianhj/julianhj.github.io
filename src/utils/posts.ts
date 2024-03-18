@@ -3,10 +3,11 @@ import matter from "gray-matter";
 
 import type { Post } from "~/types";
 
-const BLOG_DIR = "src/content/post";
+const BLOG_DIR = "src/content/post/";
 
-const load = () => {
-  const files = fs.readdirSync(BLOG_DIR);
+const load = (sub: string = "") => {
+  const blogPath = BLOG_DIR + sub;
+  const files = fs.readdirSync(blogPath);
 
   const posts = Promise.all(
     files
@@ -38,9 +39,9 @@ let _posts: Post[];
 // })
 
 /** */
-export const fetchPosts = async (): Promise<Post[]> => {
+export const fetchPosts = async (child: string = ""): Promise<Post[]> => {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  _posts = _posts || load();
+  _posts = _posts || load(child);
 
   return await _posts;
 };
@@ -55,11 +56,11 @@ export const findLatestPosts = async ({ count, page }: { count?: number; page?: 
 };
 
 /** */
-export const findPostBySlug = async (slug: string): Promise<Post | null> => {
+export const findPostBySlug = async (slug: string, sub: string =""): Promise<Post | null> => {
   if (!slug) return null;
 
   try {
-    const readFile = fs.readFileSync(BLOG_DIR + `/${slug}.md`, "utf-8");
+    const readFile = fs.readFileSync(BLOG_DIR + sub + `/${slug}.md`, "utf-8");
     const { data, content } = matter(readFile);
 
     const {

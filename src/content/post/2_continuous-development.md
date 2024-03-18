@@ -1,7 +1,7 @@
 ---
 publishDate: 2023-02-04T00:00:00Z
 title: Do excepteur laborum anim esse
-excerpt: Sint sit cillum pariatur eiusmod nulla pariatur ipsum. Sit laborum anim qui mollit tempor pariatur nisi minim dolor. Aliquip et adipisicing sit sit fugiat
+excerpt: Promotes an ongoing development process where coding activities are continuous rather than divided into distinct phases. This aligns with agile methodologies, emphasizing iterative development, regular releases, and responsiveness to changing priorities.
 image: https://images.unsplash.com/photo-1638803040283-7a5ffd48dad5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2592&q=80
 tags:
   - markdown

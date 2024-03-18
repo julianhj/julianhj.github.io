@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  latest:
+    specifier: ^0.2.0
+    version: 0.2.0
+
 devDependencies:
   '@builder.io/qwik':
     specifier: ^1.4.5
@@ -11,6 +16,9 @@ devDependencies:
   '@builder.io/qwik-city':
     specifier: ^1.4.5
     version: 1.4.5(@types/node@20.11.20)
+  '@tailwindcss/typography':
+    specifier: ^0.5.10
+    version: 0.5.10(tailwindcss@3.4.1)
   '@types/eslint':
     specifier: ^8.56.2
     version: 8.56.3
@@ -30,7 +38,7 @@ devDependencies:
     specifier: ^0.0.44
     version: 0.0.44(@builder.io/qwik@1.4.5)
   autoprefixer:
-    specifier: ^10.4.14
+    specifier: ^10.4.17
     version: 10.4.17(postcss@8.4.35)
   esbuild:
     specifier: ^0.20.1
@@ -66,8 +74,8 @@ devDependencies:
     specifier: ^2.2.1
     version: 2.2.1
   tailwindcss:
-    specifier: 3.3.3
-    version: 3.3.3
+    specifier: 3.4.1
+    version: 3.4.1
   typescript:
     specifier: 5.3.3
     version: 5.3.3
@@ -1028,6 +1036,18 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@tailwindcss/typography@0.5.10(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      postcss-selector-parser: 6.0.10
+      tailwindcss: 3.4.1
+    dev: true
 
   /@trysound/sax@0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -2656,6 +2676,13 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /latest@0.2.0:
+    resolution: {integrity: sha512-nsIM/FjwLcsKZ1KDAw5CivnM26zzMs3zGBL4SdjYXHI5tMcOWjGhFDMBKIum4WNAkZmeVw7zU1jR2H2UiKoQVA==}
+    hasBin: true
+    dependencies:
+      npm: 2.15.12
+    dev: false
+
   /levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -2689,6 +2716,14 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-locate: 5.0.0
+    dev: true
+
+  /lodash.castarray@4.4.0:
+    resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
+    dev: true
+
+  /lodash.isplainobject@4.0.6:
+    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
     dev: true
 
   /lodash.merge@4.6.2:
@@ -3195,6 +3230,83 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /npm@2.15.12:
+    resolution: {integrity: sha512-WMoAJ518W0vHjWy1abYnTeyG9YQpSoYGPxAx7d0C0L7U7Jo44bZsrvTjccmDohCJGxpasdKfqsKsl6o/RUPx6A==}
+    hasBin: true
+    dev: false
+    bundledDependencies:
+      - abbrev
+      - ansi
+      - ansi-regex
+      - ansicolors
+      - ansistyles
+      - archy
+      - async-some
+      - block-stream
+      - char-spinner
+      - chmodr
+      - chownr
+      - cmd-shim
+      - columnify
+      - config-chain
+      - dezalgo
+      - editor
+      - fs-vacuum
+      - fs-write-stream-atomic
+      - fstream
+      - fstream-npm
+      - github-url-from-git
+      - github-url-from-username-repo
+      - glob
+      - graceful-fs
+      - hosted-git-info
+      - imurmurhash
+      - inflight
+      - inherits
+      - ini
+      - init-package-json
+      - lockfile
+      - lru-cache
+      - minimatch
+      - mkdirp
+      - node-gyp
+      - nopt
+      - normalize-git-url
+      - normalize-package-data
+      - npm-cache-filename
+      - npm-install-checks
+      - npm-package-arg
+      - npm-registry-client
+      - npm-user-validate
+      - npmlog
+      - once
+      - opener
+      - osenv
+      - path-is-inside
+      - read
+      - read-installed
+      - read-package-json
+      - readable-stream
+      - realize-package-specifier
+      - request
+      - retry
+      - rimraf
+      - semver
+      - sha
+      - slide
+      - sorted-object
+      - spdx-license-ids
+      - strip-ansi
+      - tar
+      - text-table
+      - uid-number
+      - umask
+      - validate-npm-package-license
+      - validate-npm-package-name
+      - which
+      - wrappy
+      - write-file-atomic
+
   /nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
     dependencies:
@@ -3402,6 +3514,14 @@ packages:
     dependencies:
       postcss: 8.4.35
       postcss-selector-parser: 6.0.15
+    dev: true
+
+  /postcss-selector-parser@6.0.10:
+    resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
+    engines: {node: '>=4'}
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
     dev: true
 
   /postcss-selector-parser@6.0.15:
@@ -3904,8 +4024,8 @@ packages:
       '@babel/runtime': 7.24.0
     dev: true
 
-  /tailwindcss@3.3.3:
-    resolution: {integrity: sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==}
+  /tailwindcss@3.4.1:
+    resolution: {integrity: sha512-qAYmXRfk3ENzuPBakNK0SRrUDipP8NQnEY6772uDhflcQz5EhRdD7JNZxyrFHVQNCwULPBn6FNPp9brpO7ctcA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
