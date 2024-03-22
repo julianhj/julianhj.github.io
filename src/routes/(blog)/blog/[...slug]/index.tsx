@@ -11,6 +11,8 @@ import { fetchPosts, findPostBySlug } from "~/utils/posts";
 //import { parse } from "path";
 
 export const useGetPostBySlug = routeLoader$(async ({ params, status }) => {
+  //console.log("slug: " + params.slug);
+  console.log(JSON.stringify(params));
   const post = await findPostBySlug(params.slug);
 
   if (!post) {

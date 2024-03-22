@@ -1,6 +1,6 @@
 ---
 publishDate: 2023-02-03T00:00:00Z
-title: Continuous Design
+title: XXXXYYYYZZZ
 excerpt: Emphasizes the ongoing nature of design activities throughout the development process. This involves refining and evolving the design based on changing requirements, feedback, and emerging insights. Continuous design encourages adaptability and responsiveness to evolving project needs.
 image: https://images.unsplash.com/photo-1639503611585-1054af5dbfab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80
 tags:

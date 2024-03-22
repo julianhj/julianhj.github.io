@@ -10,7 +10,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script type="text/javascript">
 
-        var fills   = ['#039de1', '#0000ff'],
+        var fills   = ['#039de1', '#039de1'],
             h       = 350,
             w       = 800,
             numX    = 40,
@@ -75,14 +75,14 @@
                         .data(d)
                         .enter()
                         .append("circle")
-                        .attr("fill", "black")
+                        /*.attr("fill", "black")
                         .attr("stroke", "black")
                         .attr("stroke-width", "2")
                         .attr("stroke-color", "black")
-                        .attr("border","1");
+                        .attr("border","1");*/
 
                     d3.select(this).append('line')
-                        .attr("stroke", function (d, i) { return fills[index%2] })
+                        .attr("stroke", function (d, i) { return fills[index%1] })
                         .attr("stroke-width", 2)
                 });
                 
@@ -98,10 +98,10 @@
                     .attr("r",  function (d) { return z(d.z) })
                     .attr("fill-opacity", function (d) { return z(d.z) / 10 })
                     .attr("fill", function (d, i) { return fills[index%2]; })
-                    .attr("stroke", "black")
-                        .attr("stroke-width", "2")
-                        .attr("stroke-color", "black")
-                        .attr("border","1");
+                    /*.attr("stroke", "black")
+                    .attr("stroke-width", "0.5")
+                    .attr("stroke-color", "black")
+                    .attr("border","1")*/;
 
 
                 d3.select(this)
@@ -110,7 +110,7 @@
                     .attr("x1", x(d[0].x))
                     .attr("y2", y(d[0].y) - inverted * z(d[0].z))
                     .attr("y1", y(d[1].y) + inverted * z(d[1].z))
-                    .attr("opacity", 0.3 * inverted * (d[1].y - d[0].y))
+                    .attr("opacity", 0.3 * inverted * (d[1].y - d[0].y));
             })
         }
 

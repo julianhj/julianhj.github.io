@@ -1,23 +1,51 @@
 import fs from "fs";
+import path from 'path';
 import matter from "gray-matter";
 
 import type { Post } from "~/types";
 
-const BLOG_DIR = "src/content/post/";
+const BLOG_DIR = "src/content/post";
 
-const load = (sub: string = "") => {
-  const blogPath = BLOG_DIR + sub;
-  const files = fs.readdirSync(blogPath);
+export function* readAllFiles(dir: string): Generator<string> {
+  const files = fs.readdirSync(dir, { withFileTypes: true });
 
-  const posts = Promise.all(
+  for (const file of files) {
+    if (file.isDirectory()) {
+      yield* readAllFiles(path.join(dir, file.name));
+    } else {
+      yield path.join(dir, file.name);
+    }
+  }
+}
+
+const load = async (): Promise<Post[]> => {
+  const blogPath = BLOG_DIR;
+  //const files = fs.readdirSync(blogPath);
+  const posts: Post[] = [];
+  for (const file of readAllFiles(blogPath)) {
+    //console.log(file);
+    //const filename = path.basename(file);
+    const filename = file.replace(blogPath + "/", "");
+    const slug = filename.replace(".md", "");
+    //console.log("slug: " + slug);
+    const post = await findPostBySlug(slug);
+    //console.log(JSON.stringify(post));
+    if(post) {
+      posts.push(post);
+      //console.log(file);
+    }
+  }
+
+  /*const posts = Promise.all(
     files
+      .next
       .filter((filename) => filename.endsWith(".md"))
       .map(async (filename) => {
         const slug = filename.replace(".md", "");
         return await findPostBySlug(slug);
       })
     // .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
-  );
+  );*/
 
   return posts;
 };
@@ -39,9 +67,9 @@ let _posts: Post[];
 // })
 
 /** */
-export const fetchPosts = async (child: string = ""): Promise<Post[]> => {
+export const fetchPosts = async (): Promise<Post[]> => {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  _posts = _posts || load(child);
+  _posts = _posts || load();
 
   return await _posts;
 };
@@ -56,11 +84,14 @@ export const findLatestPosts = async ({ count, page }: { count?: number; page?: 
 };
 
 /** */
-export const findPostBySlug = async (slug: string, sub: string =""): Promise<Post | null> => {
+export const findPostBySlug = async (slug: string): Promise<Post | null> => {
+  //console.log("slug: " + slug);
   if (!slug) return null;
 
   try {
-    const readFile = fs.readFileSync(BLOG_DIR + sub + `/${slug}.md`, "utf-8");
+    //console.log("xxxx: " + BLOG_DIR + `/${slug}.md`);
+    //const readFile = fs.readFileSync(BLOG_DIR + sub + `/${slug}.md`, "utf-8");
+    const readFile = fs.readFileSync(BLOG_DIR + `/${slug}.md`, "utf-8");
     const { data, content } = matter(readFile);
 
     const {
@@ -78,6 +109,8 @@ export const findPostBySlug = async (slug: string, sub: string =""): Promise<Pos
 
     const publishDate = new Date(rawPublishDate);
     const updateDate = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
+
+    console.log(slug);
 
     return {
       id: slug,

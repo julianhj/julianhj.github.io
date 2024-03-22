@@ -9,7 +9,7 @@ import { SITE } from "~/config.mjs";
 import Posts from "~/components/widgets/Posts";
 
 export const head: DocumentHead = {
-  title: "Continuous Delivery",
+  title: "Key Principals of Progressive Software Development",
   meta: [
     {
       name: "description",
@@ -31,16 +31,15 @@ export default component$(() => {
     childSlug: {
       value: '',
     }
-
   });
 
   useTask$(async (taskContext) => {
-    const childSlug = taskContext.track(() => store.childSlug.value);
+    taskContext.track(() => store.childSlug.value);
 
-    console.log("child: " + store.childSlug.value);
+    //console.log("child: " + childSlug);
 
     if (isServer) {
-      const posts = await fetchPosts(childSlug);
+      const posts = await fetchPosts();
       store.posts = posts.map((post: Post) => ({ ...post }));
     }
   });
@@ -59,14 +58,6 @@ export default component$(() => {
           <Posts childSlug={store.childSlug} posts={store.posts} />
 
         </div>
-        <div class="mb-4 md:mb-0 md:py-4 md:pr-16">
-          {head.title && <h2 class="text-4xl md:text-4xl leading-3 sm:whitespace-nowrap text-primary mb-8">{head.title}</h2>}
-          
-          <Posts childSlug={store.childSlug} posts={store.posts} />
-
-        </div>
-
-
       </div>
     </section>
   );  

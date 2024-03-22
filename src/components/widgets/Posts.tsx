@@ -42,7 +42,8 @@ export default component$<Props>(({ posts = [], childSlug }) => {
                 childSlug.value = slug;
               }}
               class="underline decoration-dotted decoration-1 underline-offset-4 transition duration-200 ease-in"
-              href={`#`}
+              //href={`${slug}`}
+              href={`/blog/${slug}`}
             >
               {title && <p class="mb-2 text-xl font-bold">{title}</p>}
               {excerpt && <p class="">{excerpt}</p>}

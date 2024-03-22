@@ -1,7 +1,7 @@
 ---
 publishDate: 2023-02-05T00:00:00Z
-title: Ad irure duis nisi tempor eu dolor fugiat magna
-excerpt: Sint sit cillum pariatur eiusmod nulla pariatur ipsum. Sit laborum anim qui mollit tempor pariatur nisi minim dolor. Aliquip et adipisicing sit sit fugiat
+title: Continuous Deployment
+excerpt: Focuses on automating the deployment process to enable the rapid and consistent release of software changes into production. Continuous deployment minimizes manual intervention, reducing the risk of errors and accelerating the delivery of new features.
 image: https://images.unsplash.com/photo-1637118259230-eaa1088f8168?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1664&q=80
 tags:
   - markdown
